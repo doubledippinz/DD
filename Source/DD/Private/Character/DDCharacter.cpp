@@ -1,11 +1,12 @@
 // Copyright DoubleDippinz
 
-
 #include "Character/DDCharacter.h"
 
 #include "AbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
-/*#include "Player/DDPlayerState"*/
+#include "Player/DDPlayerController.h"
+#include "Player/DDPlayerState.h"
+#include "UI/HUD/DDHUD.h"
 
 ADDCharacter::ADDCharacter()
 {
@@ -27,7 +28,7 @@ void ADDCharacter::PossessedBy(AController* NewController)
 	Super::PossessedBy(NewController);
 
 	// Init ability actor info for the server
-	//InitAbilityActorInfo();
+	InitAbilityActorInfo();
 }
 
 void ADDCharacter::OnRep_PlayerState()
@@ -35,14 +36,23 @@ void ADDCharacter::OnRep_PlayerState()
 	Super::OnRep_PlayerState();
 
 	// Init ability actor info for the client
-	//InitAbilityActorInfo();
+	InitAbilityActorInfo();
 }
 
-/*void ADDCharacter::InitAbilityActorInfo()
+void ADDCharacter::InitAbilityActorInfo()
 {
 	ADDPlayerState* DDPlayerState = GetPlayerState<ADDPlayerState>();
 	check(DDPlayerState);
 	DDPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(DDPlayerState, this);
 	AbilitySystemComponent = DDPlayerState->GetAbilitySystemComponent();
 	AttributeSet = DDPlayerState->GetAttributeSet();
-}*/
+
+	if (ADDPlayerController* DDPlayerController = Cast<ADDPlayerController> (GetController()))
+	{
+		if (ADDHUD* DDHUD = Cast<ADDHUD>(DDPlayerController->GetHUD()))
+		{
+			DDHUD->InitOverlay(DDPlayerController, DDPlayerState, AbilitySystemComponent, AttributeSet);
+		}
+	}
+	
+}

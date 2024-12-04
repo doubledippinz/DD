@@ -27,8 +27,14 @@ protected:
 
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditAnywhere, Category = "Skateboard")
+	UPROPERTY(EditAnywhere, Category = "Equipment")
 	TObjectPtr<USkeletalMeshComponent> Skateboard;
+
+	UPROPERTY(EditAnywhere, Category = "Equipment")
+	TObjectPtr<USkeletalMeshComponent> Helmet;
+
+	UPROPERTY(EditAnywhere, Category = "Equipment")
+	TObjectPtr<USkeletalMeshComponent> Gloves;
 
 	UPROPERTY(EditAnywhere, Category = "AbilitySystem")
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
