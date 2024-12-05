@@ -1,5 +1,3 @@
-// Copyright DoubleDippinz
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,7 +6,7 @@
 
 class UAttributeSet;
 class UAbilitySystemComponent;
-class UDDOverlayWidgetController;
+class UOverlayWidgetController;
 class UDDUserWidget;
 struct FWidgetControllerParams;
 
@@ -21,7 +19,7 @@ public:
 	UPROPERTY()
 	TObjectPtr<UDDUserWidget>  OverlayWidget;
 
-	UDDOverlayWidgetController* GetDDOverlayWidgetController(const FWidgetControllerParams& WCParams);
+	UOverlayWidgetController* GetOverlayWidgetController(const FWidgetControllerParams& WCParams);
 
 	void InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS);
 
@@ -34,8 +32,8 @@ private:
 	TSubclassOf<UDDUserWidget> OverlayWidgetClass;
 
 	UPROPERTY()
-	TObjectPtr<UDDOverlayWidgetController> OverlayWidgetController;
+	TObjectPtr<UOverlayWidgetController> OverlayWidgetController;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UDDOverlayWidgetController> OverlayWidgetControllerClass;
+	TSubclassOf<UOverlayWidgetController> OverlayWidgetControllerClass;
 };

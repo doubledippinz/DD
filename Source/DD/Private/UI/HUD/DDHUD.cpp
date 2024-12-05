@@ -1,16 +1,12 @@
-// Copyright DoubleDippinz
-
-
 #include "UI/HUD/DDHUD.h"
-
 #include "UI/Widget/DDUserWidget.h"
-#include "UI/WidgetController/DDOverlayWidgetController.h"
+#include "UI/WidgetController/OverlayWidgetController.h"
 
-UDDOverlayWidgetController* ADDHUD::GetDDOverlayWidgetController(const FWidgetControllerParams& WCParams)
+UOverlayWidgetController* ADDHUD::GetOverlayWidgetController(const FWidgetControllerParams& WCParams)
 {
 	if (OverlayWidgetController == nullptr)
 	{
-		OverlayWidgetController = NewObject<UDDOverlayWidgetController>(this, OverlayWidgetControllerClass);
+		OverlayWidgetController = NewObject<UOverlayWidgetController>(this, OverlayWidgetControllerClass);
 		OverlayWidgetController->SetWidgetControllerParams(WCParams);
 		OverlayWidgetController->BindCallbacksToDependencies();
 		return OverlayWidgetController;
@@ -20,14 +16,14 @@ UDDOverlayWidgetController* ADDHUD::GetDDOverlayWidgetController(const FWidgetCo
 
 void ADDHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)
 {
-	checkf(OverlayWidgetClass, TEXT("Overlay Widget Class uninitialized, please fill out BP_AuraHUD"));
-	checkf(OverlayWidgetControllerClass, TEXT("Overlay Widget Controller Class uninitialized, please fill out BP_AuraHUD"));
+	checkf(OverlayWidgetClass, TEXT("Overlay Widget Class uninitialized, please fill out BP_DDHUD"));
+	checkf(OverlayWidgetControllerClass, TEXT("Overlay Widget Controller Class uninitialized, please fill out BP_DDHUD"));
 	
 	UUserWidget* Widget = CreateWidget<UUserWidget>(GetWorld(), OverlayWidgetClass);
 	OverlayWidget = Cast<UDDUserWidget>(Widget);
 	
 	const FWidgetControllerParams WidgetControllerParams(PC, PS, ASC, AS);
-	UDDOverlayWidgetController* WidgetController = GetDDOverlayWidgetController(WidgetControllerParams);
+	UOverlayWidgetController* WidgetController = GetOverlayWidgetController(WidgetControllerParams);
 
 	OverlayWidget->SetWidgetController(WidgetController);
 	WidgetController->BroadcastInitialValues();

@@ -4,15 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "UI/WidgetController/DDWidgetController.h"
-#include "DDOverlayWidgetController.generated.h"
+#include "OverlayWidgetController.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChangedSignature, float, NewHealth);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxHealthChangedSignature, float, MaxHealth);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnManaChangedSignature, float, NewMana);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxManathChangedSignature, float, MaxMana);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxManaChangedSignature, float, MaxMana);
 
 UCLASS(BlueprintType, Blueprintable)
-class DD_API UDDOverlayWidgetController : public UDDWidgetController
+class DD_API UOverlayWidgetController : public UDDWidgetController
 {
 	GENERATED_BODY()
 
@@ -25,13 +25,13 @@ public:
 	FOnHealthChangedSignature OnHealthChanged;
 
 	UPROPERTY(BlueprintAssignable, Category="GAS|Attributes")
-	FOnHealthChangedSignature OnMaxHealthChanged;
+	FOnMaxHealthChangedSignature OnMaxHealthChanged;
 
 	UPROPERTY(BlueprintAssignable, Category="GAS|Attributes")
-	FOnHealthChangedSignature OnManaChanged;
+	FOnManaChangedSignature OnManaChanged;
 
 	UPROPERTY(BlueprintAssignable, Category="GAS|Attributes")
-	FOnHealthChangedSignature OnMaxManaChanged;
+	FOnMaxManaChangedSignature OnMaxManaChanged;
 
 protected:
 	void HealthChanged(const FOnAttributeChangeData& Data) const;
