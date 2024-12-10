@@ -3,10 +3,10 @@
 
 #include "Character/DDCharacterBase.h"
 
+
 ADDCharacterBase::ADDCharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
-
 	
 	Skateboard = CreateDefaultSubobject<USkeletalMeshComponent>("Skateboard");
 	Skateboard->SetupAttachment(GetMesh(), FName("SkateboardHandSocket"));
@@ -33,3 +33,4 @@ void ADDCharacterBase::BeginPlay()
 
 	
 }
+

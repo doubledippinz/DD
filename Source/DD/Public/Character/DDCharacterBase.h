@@ -11,7 +11,7 @@ class UAbilitySystemComponent;
 class UAttributeSet;
 
 UCLASS(Abstract)
-class DD_API ADDCharacterBase : public ACharacter
+class DD_API ADDCharacterBase : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
@@ -19,11 +19,10 @@ public:
 
 	ADDCharacterBase();
 
-	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 protected:
-
 
 	virtual void BeginPlay() override;
 
@@ -36,11 +35,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Equipment")
 	TObjectPtr<USkeletalMeshComponent> Gloves;
 
-	UPROPERTY(EditAnywhere, Category = "AbilitySystem")
+	UPROPERTY(EditAnywhere, Category = "Combat")
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 
-	UPROPERTY(EditAnywhere, Category = "AbilitySystem")
+	UPROPERTY(EditAnywhere, Category = "Combat")
 	TObjectPtr<UAttributeSet> AttributeSet;
-
-
 };

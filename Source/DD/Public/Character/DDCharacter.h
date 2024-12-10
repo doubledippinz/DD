@@ -6,9 +6,6 @@
 #include "Character/DDCharacterBase.h"
 #include "DDCharacter.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class DD_API ADDCharacter : public ADDCharacterBase
 {
@@ -22,5 +19,3 @@ public:
 private:
 	void InitAbilityActorInfo();
 };
-	
-
